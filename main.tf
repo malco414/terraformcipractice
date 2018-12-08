@@ -3,11 +3,12 @@
 #-------------------------------------
 terraform {
   required_version = ">= 0.11.0"
+
   backend "s3" {
-    bucket = "jikumaru-private-bucket"
-    key    = "tfstate/terraform.tfstate"
-    region = "ap-northeast-1"
-    profile= "jitsudan"
+    bucket  = "jikumaru-private-bucket"
+    key     = "tfstate/terraform.tfstate"
+    region  = "ap-northeast-1"
+    profile = "jitsudan"
   }
 }
 
