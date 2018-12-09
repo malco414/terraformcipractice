@@ -11,8 +11,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "terraform fmt"
-        command: |
+          name: "terraform fmt"
+          command: |
           terraform fmt -diff=true -check=true
 
   plan:
@@ -20,13 +20,13 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "terraform init"
-        command: |
-          terraform init -input=false
+          name: "terraform init"
+          command: |
+            terraform init -input=false
       - run:
-        name: "check terraform format"
-        command: |
-          terraform plan | tfnotify plan
+          name: "check terraform format"
+          command: |
+            terraform plan | tfnotify plan
 
 workflows:
   version: 2
