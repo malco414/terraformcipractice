@@ -13,7 +13,7 @@ jobs:
       - run:
           name: "terraform fmt"
           command: |
-          terraform fmt -diff=true -check=true
+            terraform fmt -diff=true -check=true
 
   plan:
     <<: *defaults
