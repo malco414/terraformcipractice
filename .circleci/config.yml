@@ -33,4 +33,6 @@ workflows:
   terraform-workflow:
     jobs:
       - fmt
-      - plan
+      - plan:
+          requires:
+            - fmt
