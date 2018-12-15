@@ -1,13 +1,38 @@
 version: 2
-jobs:
-  build:
+
+defaults: &defaults
     docker:
-      - image: debian:stretch
+    - image: malco414/dockerfile_tfnotify
+    working_directory: ~/terraformcipractice
+
+jobs:
+  fmt:
+    <<: *defaults
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: "terraform fmt"
+          command: |
+            terraform fmt -diff=true -check=true
+
+  plan:
+    <<: *defaults
+    steps:
+      - checkout
       - run:
-          name: Print the Current Time
-          command: date
+          name: "terraform init"
+          command: |
+            terraform init -input=false
+      - run:
+          name: "check terraform format"
+          command: |
+            terraform plan | tfnotify plan
+
+workflows:
+  version: 2
+  terraform-workflow:
+    jobs:
+      - fmt
+      - plan:
+          requires:
+            - fmt

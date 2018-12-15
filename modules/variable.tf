@@ -1,4 +1,2 @@
-variable "bucket_name" {
-  default = "tf-test-bucket-malco414"
-}
+variable "bucket_name" {}
 variable "aws_account_id" {}
